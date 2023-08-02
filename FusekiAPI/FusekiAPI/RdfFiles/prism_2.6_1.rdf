@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+
+<!-- 
+     Sample RDF from the PRISM specification - section 2.6
+     Public Last Call for Version 1.0 March 5, 2001
+  -->
+
+<rdf:RDF xmlns:prism="http://prismstandard.org/namespaces/basic/1.0/" 
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+         xmlns:dc="http://purl.org/dc/elements/1.1/"> 
+
+<rdf:Description rdf:about="http://wanderlust.com/2000/08/Corfu.jpg"> 
+  <dc:identifier rdf:resource="wanderlust:2357845" />
+  <dc:format>image/jpeg</dc:format> 
+  <dc:type rdf:resource="http://prismstandard.org/1.0/resourcetypes.xml#photo"/> 
+  <dc:coverage rdf:resource="iso3166-2:gr" /> 
+  <prism:isPartOf rdf:resource="http://wanderlust.com/2000/08/CorfuArticle.xml"  /> 
+</rdf:Description> 
+
+<rdf:Description rdf:about="http://wanderlust.com/2000/08/CorfuSidebar.xml"> 
+  <dc:identifier rdf:resource="wanderlust:2357846" /> 
+  <dc:description>Accommodations and sights on Corfu</dc:description> 
+  <dc:format>text/xml</dc:format> 
+  <dc:type rdf:resource="http://prismstandard.org/1.0/resourcetypes.xml#sidebar" /> 
+  <prism:category rdf:resource="http://prismstandard.org/1.0/category.xml#review" /> 
+  <prism:isPartOf rdf:resource="http://wanderlust.com/2000/08/CorfuArticle.xml"  /> 
+</rdf:Description> 
+
+<rdf:Description rdf:about="http://wanderlust.com/2000/08/CorfuArticle.xml"> 
+  <dc:identifier rdf:resource="wanderlust:2357847" /> 
+  <dc:format>text/xml</dc:format> 
+  <dc:type rdf:resource="http://prismstandard.org/1.0/resourcetypes.xml#article" /> 
+  <prism:category rdf:resource="http://prismstandard.org/1.0/category.xml#review" /> 
+  <prism:hasPart rdf:resource="http://wanderlust.com/2000/08/CorfuVacation.xml"  /> 
+  <prism:hasPart rdf:resource="http://wanderlust.com/2000/08/CorfuBeach.jpg"  /> 
+</rdf:Description> 
+
+</rdf:RDF>

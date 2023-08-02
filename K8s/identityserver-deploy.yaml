@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: identityserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: identityserver
+  template:
+    metadata:
+      labels:
+        app: identityserver
+    spec:
+      containers:
+      - name: identityserver
+        image: thermovipul21/identityserver
+---
+
+apiVersion: v1
+kind: Service
+metadata: 
+  name: identityserver-clusterservice
+spec:
+  type: ClusterIP
+  selector:
+    app: identityserver
+  ports:
+  - name: identityserver
+    protocol: TCP
+    port: 80
+    targetPort: 80

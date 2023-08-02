@@ -1,0 +1,66 @@
+version: '3.6'
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    hostname: "rabbitmq"
+    labels:
+      NAME: "rabbitmq"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - fusekiapinetwork
+  postgres:
+    image: postgres
+    labels:
+      NAME: "some-postgres"
+    volumes:
+      - ./volumes/data/db:/var/lib/postgresql/data
+    ports:
+       - 5432:5432
+    networks:
+      - fusekiapinetwork
+  fusekiapi:
+    image: vipul/fusekiapi
+    build:
+      context: ./FusekiAPI
+      dockerfile: Dockerfile
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=ThermoUser
+      - POSTGRES_DB=postgres
+      - POSTGRES_SERVER=projectfuseki_postgres_1
+    labels:
+      NAME: "fusekiapi"
+    ports:
+      - "8080:80"
+    depends_on:
+      - "postgres"
+      - "rabbitmq"
+    networks:
+      - fusekiapinetwork
+  fusekiuploadapi:
+    image: vipul/fusekiuploadapi
+    build:
+      context: ./FusekiUploadAPI
+      dockerfile: Dockerfile
+    labels:
+      NAME: "fusekiuploadapi"
+    ports:
+      - "8081:80"
+    networks:
+      - fusekiapinetwork
+  identityserver:
+    image: vipul/identityserver
+    build:
+      context: ./IdentityServerTestAPI
+      dockerfile: Dockerfile
+    labels:
+      NAME: "identity"
+    ports:
+      - "8082:80"
+    networks:
+      - fusekiapinetwork
+networks:
+  fusekiapinetwork:
+    driver: bridge

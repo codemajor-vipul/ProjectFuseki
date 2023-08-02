@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fusekiapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fusekiapi
+  template:
+    metadata:
+      labels:
+        app: fusekiapi
+    spec:
+      containers:
+      - name: fusekiapi
+        image: thermovipul21/fusekiapi
